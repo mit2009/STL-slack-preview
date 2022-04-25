@@ -79,7 +79,6 @@ slackApp.event("message", async ({ event, say }) => {
           file.title.split(".stl")[i]
         }.jpg`;
 
-        console.log(pageUrl);
         console.log("downloading...", fileName);
         await download(event.files[i].url_private_download, fileName);
         console.log("downloaded!");
@@ -89,14 +88,18 @@ slackApp.event("message", async ({ event, say }) => {
           ignoreHTTPSErrors: true,
         });
         let page = await browser.newPage();
+        let status;
         try {
-          await page.goto(pageUrl, {
+          console.log("attempting to go to", pageUrl)
+          status = await page.goto(pageUrl, {
             waitUntil: "networkidle0",
             timeout: 5000,
           });
         } catch (err) {
           console.log("Error with going to page:", err);
         }
+        console.log('status:', status);
+
         await page.setViewport({ width: 500, height: 500 });
         await page.screenshot({
           path: screenshotPath,
