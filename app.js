@@ -80,7 +80,6 @@ slackApp.event("message", async ({ event, say }) => {
         console.log("downloaded!");
 
         let browser = await puppeteer.launch({
-          headless: false,
           args: ["--no-sandbox", "--disable-setuid-sandbox"],
           ignoreHTTPSErrors: true,
         });
