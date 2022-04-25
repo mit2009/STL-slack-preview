@@ -98,7 +98,7 @@ slackApp.event("message", async ({ event, say }) => {
           console.log("Error with going to page:", err);
         }
 
-        await page.setViewport({ width: 500, height: 500 });
+        await page.setViewport({ width: 500, height: 400 });
         await page.waitForTimeout(3000);
         await page.screenshot({
           path: screenshotPath,
