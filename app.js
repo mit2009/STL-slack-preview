@@ -69,7 +69,7 @@ slackApp.event("message", async ({ event, say }) => {
 
         const publicFileName = `/uploads/${submittedName}_${file.title}`;
         const fileName = `./public${publicFileName}`;
-        const pageUrl = `${process.env.ROOT_URL}/screenshot/?file=${publicFileName}`;
+        const pageUrl = `${process.env.SCREENSHOT_URL}/screenshot/?file=${publicFileName}`;
         const previewUrl = `${process.env.ROOT_URL}/?file=${publicFileName}`;
         const screenshotPath = `./screenshots/${submittedName}_${
           file.title.split(".stl")[i]
