@@ -90,7 +90,6 @@ slackApp.event("message", async ({ event, say }) => {
         let page = await browser.newPage();
         let status;
         try {
-          console.log("attempting to go to", pageUrl)
           status = await page.goto(pageUrl, {
             waitUntil: "load",
             timeout: 10000,
@@ -98,7 +97,6 @@ slackApp.event("message", async ({ event, say }) => {
         } catch (err) {
           console.log("Error with going to page:", err);
         }
-        console.log('status:', status);
 
         await page.setViewport({ width: 500, height: 500 });
         await page.screenshot({
