@@ -81,10 +81,10 @@ slackApp.event("message", async ({ event, say }) => {
         console.log("downloaded!");
 
         let browser = await puppeteer.launch({
-          args: ["--no-sandbox", "--disable-setuid-sandbox"],
+          args: ["--no-sandbox"],
         });
         let page = await browser.newPage();
-        await page.goto(pageUrl, { waitUntil: "networkidle2", timeout: 5000 });
+        await page.goto(pageUrl, { waitUntil: "networkidle0" });
         await page.setViewport({ width: 500, height: 500 });
         await page.screenshot({
           path: screenshotPath,
