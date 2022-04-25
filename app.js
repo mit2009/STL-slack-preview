@@ -40,7 +40,7 @@ const slackApp = new App({
   appToken: process.env.SLACK_APP_TOKEN,
   // Socket Mode doesn't listen on a port, but in case you want your app to respond to OAuth,
   // you still need to listen on some port!
-  port: process.env.PORT || 3000,
+  port: 2999,
 });
 
 (async () => {
@@ -132,7 +132,7 @@ slackApp.event("message", async ({ event, say }) => {
 
 const express = require("express");
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 app.use(express.static("public"));
 
@@ -145,5 +145,5 @@ app.get("/screenshot", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${process.env.PORT || port}`);
+  console.log(`Example app listening on port ${port}`);
 });
