@@ -84,7 +84,14 @@ slackApp.event("message", async ({ event, say }) => {
           ignoreHTTPSErrors: true,
         });
         let page = await browser.newPage();
-        await page.goto(pageUrl, { waitUntil: "networkidle0", timeout: 5000 });
+        try {
+          await page.goto(pageUrl, {
+            waitUntil: "networkidle0",
+            timeout: 5000,
+          });
+        } catch (err) {
+          console.log("Error with going to page:", err);
+        }
         await page.setViewport({ width: 500, height: 500 });
         await page.screenshot({
           path: screenshotPath,
