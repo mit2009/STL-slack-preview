@@ -33,8 +33,8 @@
     text-align: center;
     font-size: 42px;
     font-weight: bold;
+    line-height: normal;
     font-family: grilledcheese, sans-serif;
-    letter-spacing: 1px;
   }
   
   .instructions {
