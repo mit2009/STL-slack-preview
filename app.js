@@ -99,6 +99,7 @@ slackApp.event("message", async ({ event, say }) => {
         }
 
         await page.setViewport({ width: 500, height: 500 });
+        await page.waitForTimeout(3000);
         await page.screenshot({
           path: screenshotPath,
           type: "jpeg",
