@@ -49,10 +49,15 @@ const slackApp = new App({
 })();
 
 slackApp.event("message", async ({ event, say }) => {
-  const result = await slackApp.client.users.info({ user: event.user });
-  const submittedName = result.user.profile.real_name_normalized
-    .split(" ")
-    .join("_");
+  let submittedName = "name";
+  try {
+    const result = await slackApp.client.users.info({ user: event.user });
+    submittedName = result.user.profile.real_name_normalized
+      .split(" ")
+      .join("_");
+  } catch (error) {
+    console.log("name error:", error);
+  }
   const fileList = [];
 
   let totalFiles = 0;
