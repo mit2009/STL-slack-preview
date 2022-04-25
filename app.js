@@ -92,7 +92,6 @@ slackApp.event("message", async ({ event, say }) => {
           type: "jpeg",
           fullPage: true,
         });
-        await page.close();
         await browser.close();
 
         let message = "";
