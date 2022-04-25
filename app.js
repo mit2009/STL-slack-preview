@@ -81,7 +81,7 @@ slackApp.event("message", async ({ event, say }) => {
 
         let browser = await puppeteer.launch({
           headless: false,
-          args: ["--disable-setuid-sandbox"],
+          args: ["--no-sandbox", "--disable-setuid-sandbox"],
           ignoreHTTPSErrors: true,
         });
         let page = await browser.newPage();
