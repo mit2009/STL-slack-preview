@@ -93,7 +93,7 @@ slackApp.event("message", async ({ event, say }) => {
           console.log("attempting to go to", pageUrl)
           status = await page.goto(pageUrl, {
             waitUntil: "networkidle0",
-            timeout: 5000,
+            timeout: 10000,
           });
         } catch (err) {
           console.log("Error with going to page:", err);
