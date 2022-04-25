@@ -14,8 +14,7 @@ var download = async (url, dest) => {
       url,
       {
         headers: {
-          Authorization:
-            `Bearer ${process.env.SLACK_BOT_TOKEN}`,
+          Authorization: `Bearer ${process.env.SLACK_BOT_TOKEN}`,
         },
       },
       function (response) {
@@ -81,8 +80,9 @@ slackApp.event("message", async ({ event, say }) => {
         console.log("downloaded!");
 
         let browser = await puppeteer.launch({
-          args: ["--no-sandbox"],
-          headless: true,
+          headless: false,
+          args: ["--disable-setuid-sandbox"],
+          ignoreHTTPSErrors: true,
         });
         let page = await browser.newPage();
         await page.goto(pageUrl, { waitUntil: "networkidle0", timeout: 5000 });
@@ -92,6 +92,7 @@ slackApp.event("message", async ({ event, say }) => {
           type: "jpeg",
           fullPage: true,
         });
+        await page.close();
         await browser.close();
 
         let message = "";
