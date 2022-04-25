@@ -128,13 +128,13 @@ slackApp.event("message", async ({ event, say }) => {
       }
     }
 
-    if (totalFiles === 0) {
-      slackApp.client.chat.postMessage({
-        text: "Hello! Normally I would give you some STL previews, but I didn't see any *.stl* files :(",
-        thread_ts: event.ts,
-        channel: event.channel,
-      });
-    }
+    // if (totalFiles === 0) {
+    //   slackApp.client.chat.postMessage({
+    //     text: "Hello! Normally I would give you some STL previews, but I didn't see any *.stl* files :(",
+    //     thread_ts: event.ts,
+    //     channel: event.channel,
+    //   });
+    // }
   }
 
   // console.log(fileList);
