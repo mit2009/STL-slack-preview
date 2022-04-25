@@ -80,7 +80,9 @@ slackApp.event("message", async ({ event, say }) => {
         await download(event.files[i].url_private_download, fileName);
         console.log("downloaded!");
 
-        let browser = await puppeteer.launch({});
+        let browser = await puppeteer.launch({
+          args: ["--no-sandbox", "--disable-setuid-sandbox"],
+        });
         let page = await browser.newPage();
         await page.goto(pageUrl, { waitUntil: "networkidle0", timeout: 8000 });
         await page.setViewport({ width: 500, height: 500 });
