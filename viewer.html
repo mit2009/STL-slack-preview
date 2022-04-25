@@ -20,7 +20,7 @@
     <script>
       // get filename from search query in the url
       var filename = location.search.split("file=")[1];
-      console.log(filename);
+
       document.getElementById("filename").innerHTML = decodeURIComponent(filename);
       document.getElementsByClassName("download-link")[0].href = filename;
 
@@ -93,7 +93,8 @@
       }
 
       window.onload = function () {
-        STLViewer(filename, "model");
+        console.log('as',filename)
+        STLViewer('/uploads/image.stl', "model");
       };
     </script>
   </body>

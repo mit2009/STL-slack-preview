@@ -15,7 +15,7 @@ var download = async (url, dest) => {
       {
         headers: {
           Authorization:
-            "Bearer xoxb-2939592917525-3435260107892-E7guMBQprAmjA0lQMQfxEjU5",
+            `Bearer ${process.env.SLACK_BOT_TOKEN}`,
         },
       },
       function (response) {
