@@ -8,27 +8,31 @@ var https = require("https");
 var fs = require("fs");
 
 var download = async (url, dest) => {
-  var file = fs.createWriteStream(dest);
-  await https
-    .get(
-      url,
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.SLACK_BOT_TOKEN}`,
+  return new Promise((resolve) => {
+    var file = fs.createWriteStream(dest);
+    https
+      .get(
+        url,
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.SLACK_BOT_TOKEN}`,
+          },
         },
-      },
-      function (response) {
-        response.pipe(file);
-        file.on("finish", function () {
-          file.close();
-        });
-      }
-    )
-    .on("error", function (err) {
-      // Handle errors
-      fs.unlink(dest); // Delete the file async. (But we don't check the result)
-      console.log(err.message);
-    });
+        function (response) {
+          response.pipe(file);
+          file.on("finish", function () {
+            file.close();
+            resolve();
+          });
+        }
+      )
+      .on("error", function (err) {
+        // Handle errors
+        fs.unlink(dest); // Delete the file async. (But we don't check the result)
+        console.log(err.message);
+        resolve();
+      });
+  });
 };
 
 // Initializes your app with your bot token and signing secret
