@@ -84,7 +84,7 @@ slackApp.event("message", async ({ event, say }) => {
           args: ["--no-sandbox", "--disable-setuid-sandbox"],
         });
         let page = await browser.newPage();
-        await page.goto(pageUrl, { waitUntil: "networkidle0", timeout: 15000 });
+        await page.goto(pageUrl, { waitUntil: "networkidle2", timeout: 5000 });
         await page.setViewport({ width: 500, height: 500 });
         await page.screenshot({
           path: screenshotPath,
