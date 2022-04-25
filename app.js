@@ -82,9 +82,10 @@ slackApp.event("message", async ({ event, say }) => {
 
         let browser = await puppeteer.launch({
           args: ["--no-sandbox"],
+          headless: true,
         });
         let page = await browser.newPage();
-        await page.goto(pageUrl, { waitUntil: "networkidle0" });
+        await page.goto(pageUrl, { waitUntil: "networkidle0", timeout: 5000 });
         await page.setViewport({ width: 500, height: 500 });
         await page.screenshot({
           path: screenshotPath,
