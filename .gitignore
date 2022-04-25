@@ -1,0 +1,42 @@
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# dependencies
+node_modules
+
+# production
+/app/clients/build
+
+# misc
+Thumbs.db
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.cache/
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log
+
+# builds
+*.css
+!/app/clients/src/css/reset.css
+dist/
+bundle/
+.next/
+*/.next-bkp/
+
+#source files
+*.ai
+*.mov
+*.avi
+
+# staff specific
+*/staff/server/**/*.js
+*/staff/server/**/*.js.map
+*/staff/server/public/
+
+config.json

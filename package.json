@@ -1,0 +1,19 @@
+{
+  "name": "slack-stl-viewer",
+  "description": "",
+  "version": "1.0.0",
+  "author": "Victor Hung",
+  "email": "vhung@mit.edu",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "@slack/bolt": "^3.11.0",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "fs": "^0.0.1-security",
+    "https": "^1.0.0",
+    "puppeteer": "^13.6.0"
+  }
+}

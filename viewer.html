@@ -1,0 +1,100 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="css/app.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>2.00b STL Viewer!</h1>
+      <div id="model"></div>
+      <div class="instructions">Drag to View</div>
+      <a href="" class="download-link"
+        >Download <strong id="filename"></strong
+      ></a>
+    </div>
+
+    <script src="/js/three.min.js"></script>
+    <script src="/js/STLViewer.js"></script>
+    <script src="/js/orbitControls.js"></script>
+
+    <script>
+      // get filename from search query in the url
+      var filename = location.search.split("file=")[1];
+      console.log(filename);
+      document.getElementById("filename").innerHTML = decodeURIComponent(filename);
+      document.getElementsByClassName("download-link")[0].href = filename;
+
+      function STLViewer(model, elementID) {
+        var elem = document.getElementById(elementID);
+        var camera = new THREE.PerspectiveCamera(
+          80,
+          elem.clientWidth / elem.clientHeight,
+          1,
+          1000
+        );
+        var renderer = new THREE.WebGLRenderer({
+          antialias: true,
+          alpha: true,
+        });
+        renderer.setSize(elem.clientWidth, elem.clientHeight);
+        elem.appendChild(renderer.domElement);
+        window.addEventListener(
+          "resize",
+          function () {
+            renderer.setSize(elem.clientWidth, elem.clientHeight);
+            camera.aspect = elem.clientWidth / elem.clientHeight;
+            camera.updateProjectionMatrix();
+          },
+          false
+        );
+        var controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.rotateSpeed = 3;
+        controls.dampingFactor = 0.1;
+        controls.enableZoom = true;
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = 0.75;
+        var scene = new THREE.Scene();
+        scene.add(new THREE.HemisphereLight(0xffffff, 1.5));
+
+        new THREE.STLLoader().load(model, function (geometry) {
+          var material = new THREE.MeshPhongMaterial({
+            color: 0xeeeeee,
+            specular: 100,
+            shininess: 100,
+          });
+          var mesh = new THREE.Mesh(geometry, material);
+          scene.add(mesh);
+          var middle = new THREE.Vector3();
+          geometry.computeBoundingBox();
+          geometry.boundingBox.getCenter(middle);
+          mesh.geometry.applyMatrix(
+            new THREE.Matrix4().makeTranslation(-middle.x, -middle.y, -middle.z)
+          );
+
+          // rotate the mesh
+          mesh.rotation.x = -Math.PI / 10;
+          mesh.rotation.y = Math.PI / 10;
+          mesh.rotation.z = Math.PI / 10;
+
+          var largestDimension = Math.max(
+            geometry.boundingBox.max.x,
+            geometry.boundingBox.max.y,
+            geometry.boundingBox.max.z
+          );
+          camera.position.z = largestDimension * 2;
+          var animate = function () {
+            requestAnimationFrame(animate);
+            controls.update();
+            renderer.render(scene, camera);
+          };
+          animate();
+        });
+      }
+
+      window.onload = function () {
+        STLViewer(filename, "model");
+      };
+    </script>
+  </body>
+</html>
