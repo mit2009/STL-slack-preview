@@ -22,7 +22,6 @@ yarn-error.log*
 lerna-debug.log
 
 # builds
-*.css
 !/app/clients/src/css/reset.css
 dist/
 bundle/
@@ -33,10 +32,5 @@ bundle/
 *.ai
 *.mov
 *.avi
-
-# staff specific
-*/staff/server/**/*.js
-*/staff/server/**/*.js.map
-*/staff/server/public/
 
 config.json
