@@ -45,7 +45,7 @@ const slackApp = new App({
 
 (async () => {
   // Start your app
-  await slackApp.start(process.env.PORT || 3000);
+  await slackApp.start(2999);
   console.log("⚡️ Bolt app is running!");
 })();
 
