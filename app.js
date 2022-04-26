@@ -80,7 +80,7 @@ slackApp.event("message", async ({ event, say }) => {
         const pageUrl = `${process.env.SCREENSHOT_URL}/screenshot/?file=${publicFileName}`;
         const previewUrl = `${process.env.ROOT_URL}/?file=${publicFileName}`;
         const screenshotPath = `./screenshots/${submittedName}_${
-          file.title.split(".stl")[i]
+          file.title.split(".stl")[0]
         }.jpg`;
 
         console.log("downloading...", fileName);
