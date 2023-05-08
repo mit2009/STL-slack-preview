@@ -20,14 +20,6 @@ const slackApp = new App({
 app.use(bodyParser.urlencoded())
 app.use(bodyParser.json())
 
-// For challenge validation
-// Uncomment the below to verify your slack Request URL
-// 
-// app.post("/", (req, res) => {
-//   console.log('incoming req...')
-//   console.log(req.body);
-//   res.json({ challenge: req.body.challenge });
-// });
 
 app.use("/", express.static(path.join(__dirname, "public")));
 app.use("/src", assetsRouter);
@@ -37,8 +29,11 @@ app.get("/*", (_req, res) => {
 })
 
 app.post("/", (req, res) => {
-  console.log('test---------------');
-  console.log(req.body.event);
+
+  // Challenge Verification (do not remove)
+  if (req.body.challenge) {
+    res.json({ challenge: req.body.challenge });
+  }
 
   if (!req.body.event.bot_id && req.body.event.user !== "U0565Q9NHUP") {
     console.log(req.body)

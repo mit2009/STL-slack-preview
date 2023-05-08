@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+  font-family: 'DM Sans', sans-serif;
 }
 
 .App {
@@ -8,11 +9,11 @@ body {
 }
 
 .title {
+  font-family: 'DM Sans', sans-serif;
   position: fixed;
   z-index: 2;
   font-size: 1.2em;
   border-radius: 5px;
-  font-family: sans-serif;
   background-color: white;
   padding: 6px 12px;
   top: 16px;
