@@ -1,19 +1,30 @@
 {
-  "name": "slack-stl-viewer",
-  "description": "",
-  "version": "1.0.0",
-  "author": "Victor Hung",
-  "email": "vhung@mit.edu",
-  "license": "MIT",
+  "name": "react-and-express-boilerplate",
+  "private": true,
+  "version": "0.0.0",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "concurrently 'vite' 'node server.js'",
+    "dev": "concurrently 'vite' 'nodemon server.js'",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "@slack/bolt": "^3.11.0",
-    "dotenv": "^16.0.0",
+    "@react-three/drei": "^9.66.4",
+    "@react-three/fiber": "^8.13.0",
+    "@slack/bolt": "^3.13.1",
+    "dotenv": "^16.0.3",
     "express": "^4.17.3",
-    "fs": "^0.0.1-security",
-    "https": "^1.0.0",
-    "puppeteer": "^13.6.0"
+    "puppeteer": "^20.1.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-stl-viewer": "^2.2.5",
+    "styled-components": "^6.0.0-rc.1",
+    "three": "^0.152.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^1.0.7",
+    "concurrently": "^7.6.0",
+    "nodemon": "^2.0.15",
+    "vite": "^2.9.0"
   }
 }

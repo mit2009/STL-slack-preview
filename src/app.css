@@ -1,0 +1,21 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  display: flex;
+}
+
+.title {
+  position: fixed;
+  z-index: 2;
+  font-size: 1.2em;
+  border-radius: 5px;
+  font-family: sans-serif;
+  background-color: white;
+  padding: 6px 12px;
+  top: 16px;
+  left: 16px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
