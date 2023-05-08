@@ -9,7 +9,7 @@ const app = express();
 
 require("dotenv").config();
 
-const { PORT = 3001 } = process.env;
+const { PORT = 3006 } = process.env;
 
 const slackApp = new App({
   signingSecret: process.env.SLACK_SIGNING_SECRET,
